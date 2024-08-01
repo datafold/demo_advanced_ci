@@ -1,0 +1,31 @@
+name: Apply monitors.yaml configuration to Datafold app
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'monitors.yaml'
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          echo "setuptools<72" > constraints.txt
+          export PIP_CONSTRAINT=constraints.txt
+          pip install --upgrade pip
+          python -m pip install --upgrade pip
+          pip install datafold-sdk
+      - name: Run apply.py
+        run: |
+          datafold monitors provision monitors.yaml
+        env:
+          DATAFOLD_HOST: https://app.datafold.com
+          DATAFOLD_API_KEY: ${{ secrets.DATAFOLD_APIKEY }}
