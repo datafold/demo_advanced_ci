@@ -18,7 +18,7 @@ WITH orgs AS (
 , user_count AS (
     SELECT
         org_id
-        , COUNT(DISTINCT user_id) + FLOOR(RAND() * 2) AS num_users
+        , count(distinct user_id) + mod(org_id, 2) AS num_users
     FROM {{ ref('user__created') }}
     GROUP BY 1
 )
@@ -28,18 +28,18 @@ WITH orgs AS (
         org_id
         , event_timestamp AS sub_created_at
         , plan as sub_plan
-        , price as sub_price
+        , price
     FROM {{ ref('subscription__created') }}
 )
 
 
 SELECT
-    org_id
+    case when orgs.org_id % 49 = 0 then orgs.org_id - 50000000 else orgs.org_id end as org_id
     , created_at
     , num_users
     , sub_created_at
-    , sub_plan
-    , sub_price
+    , case when num_users <= 1 then 'Individual' else sub_plan end as sub_plan
+    , coalesce(price, 0) as sub_price
 FROM orgs
 LEFT JOIN user_count USING (org_id)
 LEFT JOIN subscriptions USING (org_id)
