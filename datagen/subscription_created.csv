@@ -221,3 +221,16 @@ org_id,event_timestamp,activity,plan,price,deployment
 100000174,2024-07-24T03:52:11Z,subscribed,Business,399,SaaS
 100000106,2024-07-25T11:55:04Z,subscribed,Team,99,SaaS
 100000222,2024-07-25T15:35:21Z,subscribed,Business,399,On-prem
+100000205,2024-07-26T07:52:26Z,subscribed,Team,99,SaaS
+100000356,2024-07-26T11:32:25Z,subscribed,Business,399,SaaS
+100000390,2024-07-27T02:30:54Z,subscribed,Team,99,SaaS
+100000330,2024-07-27T04:11:58Z,subscribed,Team,99,On-prem
+100000442,2024-07-28T17:58:53Z,subscribed,Team,99,SaaS
+100000311,2024-07-28T15:16:54Z,subscribed,Team,99,On-prem
+100000126,2024-07-29T03:12:28Z,subscribed,Business,399,On-prem
+100000435,2024-07-29T17:06:33Z,subscribed,Business,399,On-prem
+100000115,2024-07-29T12:32:10Z,subscribed,Business,399,On-prem
+100000426,2024-07-30T20:19:36Z,subscribed,Business,399,SaaS
+100000249,2024-07-30T20:54:01Z,subscribed,Team,99,SaaS
+100000316,2024-07-31T16:34:14Z,subscribed,Team,99,SaaS
+100000338,2024-07-31T14:57:38Z,subscribed,Team,99,On-prem
