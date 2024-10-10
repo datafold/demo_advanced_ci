@@ -1,18 +1,18 @@
 WITH orgs AS (
 --prod
-    SELECT
-        org_id
-        , MIN(event_timestamp) AS created_at
-    FROM {{ ref('signed_in') }}
-    GROUP BY 1
-
--- --dev
 --    SELECT
---         org_id
---         , org_name
---         , employee_range
---         , created_at
---     FROM {{ ref('org_created') }}
+--        org_id
+--        , MIN(event_timestamp) AS created_at
+--    FROM {{ ref('signed_in') }}
+--    GROUP BY 1
+
+ --dev
+    SELECT
+         org_id
+         , org_name
+         , employee_range
+         , created_at
+     FROM {{ ref('org_created') }}
 )
 
 , user_count AS (
@@ -36,7 +36,7 @@ WITH orgs AS (
 SELECT
     orgs.org_id
     , created_at
-    , num_users
+    , case when num_users > 10 then 10 else num_users end as num_users
     , sub_created_at
     , sub_plan
     , sub_price
